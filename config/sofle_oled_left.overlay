@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2024
+ * SPDX-License-Identifier: MIT
+ */
+
+/* Sofle OLED Left Half - 4-pin SSD1306 I2C Display */
+/* I2C pins: SDA=GP4, SCL=GP5 */
+
+#include <dt-bindings/zmk/matrix.h>
+
+&i2c0 {
+    status = "okay";
+};
+
+/* OLED display device */
+&pro_micro {
+    status = "okay";
+
+    oled_sda: oled_sda {
+        gpios = <4 GPIO_OPEN_DRAIN>;
+    };
+    oled_scl: oled_scl {
+        gpios = <5 GPIO_OPEN_DRAIN>;
+    };
+};

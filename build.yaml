@@ -20,3 +20,8 @@ include:
     shield: sofle_right nice_view_adapter nice_view
   - board: nice_nano_v2
     shield: settings_reset
+  # OLED versions with 4-pin SSD1306 display
+  - board: nice_nano_v2
+    shield: sofle_oled_left
+  - board: nice_nano_v2
+    shield: sofle_oled_right

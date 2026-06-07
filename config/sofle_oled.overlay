@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) 2024
+ * SPDX-License-Identifier: MIT
+ */
+
+/* 4-pin OLED Display (SSD1306 128x64) on I2C */
+/* I2C pins on nice!nano v2: SDA=GP4, SCL=GP5 */
+
+&i2c0 {
+    status = "okay";
+};
+
+/* OLED Display on I2C address 0x3C */
+&pro_micro {
+    oled_sda: oled_sda {
+        gpios = <4 GPIO_OPEN_DRAIN>;
+    };
+    oled_scl: oled_scl {
+        gpios = <5 GPIO_OPEN_DRAIN>;
+    };
+};
