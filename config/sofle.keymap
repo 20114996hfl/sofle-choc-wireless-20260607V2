@@ -93,7 +93,7 @@
         zmk,display = &oled;
     };
 };
-
+/ {
     keymap {
         compatible = "zmk,keymap";
 
