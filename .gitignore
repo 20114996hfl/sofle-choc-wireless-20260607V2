@@ -1,0 +1,10 @@
+.claude/
+build/
+zmk/
+zephyr/
+modules/
+tools/
+*.uf2
+*.elf
+*.bin
+*.hex

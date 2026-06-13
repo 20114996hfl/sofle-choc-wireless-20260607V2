@@ -1,6 +1,5 @@
-// Dongle is purely a BLE central + USB HID bridge — no matrix or display.
-// We still need a physical layout and matrix transform so the keymap can be sized
-// and key events from the peripherals can be mapped to HID output.
+// Dongle is a BLE central plus USB HID bridge, with no matrix or display.
+// The physical layout and transform keep the shared Sofle keymap sized.
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <layouts/josefadamcik/sofle.dtsi>
