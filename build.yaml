@@ -1,21 +1,21 @@
 include:
   # Standalone BLE: left half acts as central, right as peripheral.
   # Flash these when running WITHOUT the USB dongle.
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: sofle_left
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: sofle_right
 
   # USB dongle setup: the dongle is the BLE central + USB HID output,
   # both halves become peripherals. Flash all three when running WITH the dongle.
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: sofle_dongle
     artifact-name: sofle_dongle
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: sofle_left
     artifact-name: sofle_left_peripheral
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_USB=n
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: sofle_right
     artifact-name: sofle_right_peripheral
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_USB=n
