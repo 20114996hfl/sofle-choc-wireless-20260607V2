@@ -1,7 +1,8 @@
 # Sofle Choc Wireless ZMK Config
 
-This repository contains a ZMK v0.3 configuration for a Sofle Choc Wireless
-keyboard using nice_nano_v2 controllers.
+This repository contains a ZMK configuration for a Sofle Choc Wireless keyboard
+using nice_nano_v2 controllers. It is pinned to a ZMK main commit because ZMK
+Studio is not available in ZMK v0.3.
 
 ## Hardware
 
@@ -61,7 +62,8 @@ mode, reflash that half with the matching firmware artifact.
 
 ## Notes
 
-- ZMK is pinned to `v0.3` in `config/west.yml`.
-- The GitHub Actions build workflow uses `zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0`.
-- ZMK Studio is intentionally not enabled because this repository stays on ZMK v0.3.
+- ZMK is pinned to commit `ff09f2d0c9f13a868c8f71d71d9348ade438e4b6` in `config/west.yml`.
+- The GitHub Actions build workflow uses the same ZMK commit for its reusable workflow.
+- ZMK Studio is enabled on the USB central builds.
 - OLED uses `&pro_micro_i2c`; changing it to `&i2c1` is known to break display output for this setup.
+- RGB underglow is linked to external power so it can turn on at boot on hardware where the LED rail is power-gated.

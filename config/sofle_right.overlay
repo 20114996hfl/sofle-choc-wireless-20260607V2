@@ -1,8 +1,18 @@
 /*
  * Copyright (c) 2023 The ZMK Contributors
  * SPDX-License-Identifier: MIT
- * 
- * Sofle Panda Choc v1 overlay for RGB and OLED
+ *
+ * Sofle Choc Wireless (right half / peripheral) overlay for RGB underglow and OLED.
+ * Pin assignments based on db-ok/SofleChocWireless reference project:
+ *   https://github.com/db-ok/SofleChocWireless
+ *   https://github.com/db-ok/zmk-config-soflechocwireless
+ *
+ * Verified pin mapping (per hardware measurement, 2026-06):
+ *   OLED I2C: SDA = P0.17, SCL = P0.20   (NOT the nice_nano pro_micro defaults)
+ *   RGB SPI : DIN = P0.08                 (matches nice_nano spi3-mosi)
+ *
+ * The OLED I2C is therefore driven via &i2c0 with custom pinctrl,
+ * NOT via the board's &pro_micro_i2c label (which targets P0.06/P0.08).
  */
 
 #include <dt-bindings/led/led.h>
@@ -17,6 +27,20 @@
     spi3_sleep: spi3_sleep {
         group1 {
             psels = <NRF_PSEL(SPIM_MOSI, 0, 8)>;
+            low-power-enable;
+        };
+    };
+
+    /* Custom I2C0 pinctrl for the OLED on P0.17 (SDA) / P0.20 (SCL). */
+    i2c0_default: i2c0_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
+        };
+    };
+
+    i2c0_sleep: i2c0_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
             low-power-enable;
         };
     };
@@ -39,15 +63,20 @@
         spi-max-frequency = <4000000>;
 
         /* WS2812 */
-        chain-length = <58>; /* Adjust to your actual LED count */
+        chain-length = <30>; /* Single half: 30 WS2812 LEDs (underglow) */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
         color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
     };
 };
 
-&pro_micro_i2c {
+&i2c0 {
     status = "okay";
+    compatible = "nordic,nrf-twim";
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-names = "default", "sleep";
+    clock-frequency = <100000>;
 
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";

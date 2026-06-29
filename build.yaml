@@ -14,8 +14,8 @@ include:
   - board: nice_nano_v2
     shield: sofle_left
     artifact-name: sofle_left_peripheral
-    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_USB=n
   - board: nice_nano_v2
     shield: sofle_right
     artifact-name: sofle_right_peripheral
-    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_USB=n
