@@ -41,13 +41,13 @@
 
             segments {
                 top: top {
-                    segments = <"layer">;
+                    segments = "layer";
                 };
                 middle: middle {
-                    segments = <"bt">;
+                    segments = "bt";
                 };
                 bottom: bottom {
-                    segments = <"modifiers" "output">;
+                    segments = "modifiers", "output";
                 };
             };
         };
