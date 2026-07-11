@@ -47,7 +47,7 @@
                     segments = "bt";
                 };
                 bottom: bottom {
-                    segments = "modifiers", "output";
+                    segments = "modifiers output";
                 };
             };
         };
