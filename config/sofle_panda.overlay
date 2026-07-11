@@ -59,12 +59,12 @@
 
         /* SPI */
         reg = <0>;
-        spi-max-frequency = <4000000>;
+        spi-max-frequency = <6000000>;
 
         /* WS2812 */
         chain-length = <30>; /* Single half: 30 WS2812 LEDs (underglow) */
-        spi-one-frame = <0x70>;
-        spi-zero-frame = <0x40>;
+        spi-one-frame = <0xE0>;
+        spi-zero-frame = <0x80>;
         color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
     };
 };
