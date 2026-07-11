@@ -35,6 +35,24 @@
         };
     };
 
+    screens {
+        status_screen: status_screen {
+            compatible = "zmk,lcd-status-screen";
+
+            segments {
+                top: top {
+                    segments = <"layer">;
+                };
+                middle: middle {
+                    segments = <"bt">;
+                };
+                bottom: bottom {
+                    segments = <"modifiers" "output">;
+                };
+            };
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
