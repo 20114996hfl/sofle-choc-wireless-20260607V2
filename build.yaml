@@ -19,3 +19,9 @@ include:
     shield: sofle_right
     artifact-name: sofle_right_peripheral
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+
+  # Panda variant: standalone BLE central on a nice!nano with the panda keymap
+  # board (different matrix wiring). RGB underglow + OLED still driven from P0.06
+  # and P0.17/P0.20 respectively per the measured pin map.
+  - board: nice_nano_v2
+    shield: sofle_panda
