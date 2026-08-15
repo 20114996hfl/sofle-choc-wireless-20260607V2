@@ -10,7 +10,7 @@ using ProMicroNRF52840/SuperMini controllers through ZMK's pin-compatible
 - Split transport: Bluetooth split
 - Encoders: one EC11 encoder on each half
 - Displays: SSD1306 128x32 OLED on each half, I2C address `0x3c`
-- RGB: WS2812 underglow, 30 LEDs per half, data on P0.06
+- RGB: WS2812 underglow, 30 LEDs per half, data on P0.08; the separate PCB LED signal is P0.06
 
 ## Keymap
 
@@ -66,4 +66,4 @@ mode, reflash that half with the matching firmware artifact.
 - The GitHub Actions build workflow uses the same ZMK commit for its reusable workflow.
 - ZMK Studio is enabled on the USB central builds.
 - OLED I2C: SDA=P0.17 and SCL=P0.20 on the ProMicroNRF52840; the built-in Sofle I2C0 node is retained with an explicit pinctrl.
-- RGB underglow is linked to external power so it can turn on at boot on hardware where the LED rail is power-gated.
+- RGB underglow is linked to P0.13 external-power control so the SuperMini VCC rail is enabled when the LEDs turn on.
