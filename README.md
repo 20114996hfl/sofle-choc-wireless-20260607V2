@@ -66,4 +66,4 @@ mode, reflash that half with the matching firmware artifact.
 - The GitHub Actions build workflow uses the same ZMK commit for its reusable workflow.
 - ZMK Studio is enabled on the USB central builds.
 - OLED I2C: SDA=P0.17 and SCL=P0.20 on the ProMicroNRF52840; the built-in Sofle I2C0 node is retained with an explicit pinctrl.
-- RGB underglow is linked to P0.13 external-power control so the SuperMini VCC rail is enabled when the LEDs turn on.
+- RGB underglow does not toggle P0.13 external power, because the OLED shares the SuperMini VCC rail and must remain powered when RGB is off.
