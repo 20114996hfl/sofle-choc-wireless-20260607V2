@@ -19,12 +19,6 @@
 
 / {
     behaviors {
-        inc_dec_kp: inc_dec_kp {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-        };
-
         inc_dec_msc: inc_dec_msc {
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
@@ -38,24 +32,6 @@
         adjust_layer {
             if-layers = <LOWER RAISE>;
             then-layer = <ADJUST>;
-        };
-    };
-
-    screens {
-        status_screen: status_screen {
-            compatible = "zmk,lcd-status-screen";
-
-            segments {
-                top: top {
-                    segments = "layer";
-                };
-                middle: middle {
-                    segments = "bt";
-                };
-                bottom: bottom {
-                    segments = "modifiers output";
-                };
-            };
         };
     };
 

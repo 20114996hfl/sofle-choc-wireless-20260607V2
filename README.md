@@ -1,12 +1,12 @@
 # Sofle Choc Wireless ZMK Config
 
 This repository contains a ZMK configuration for a Sofle Choc Wireless keyboard
-using nice_nano_v2 controllers. It is pinned to a ZMK main commit because ZMK
-Studio is not available in ZMK v0.3.
+using ProMicroNRF52840/SuperMini controllers through ZMK's pin-compatible
+`nice_nano_v2` board definition. The configuration is pinned to ZMK v0.3.
 
 ## Hardware
 
-- Controller: nice_nano_v2
+- Controller: ProMicroNRF52840/SuperMini (`nice_nano_v2` build target)
 - Split transport: Bluetooth split
 - Encoders: one EC11 encoder on each half
 - Displays: SSD1306 128x32 OLED on each half, I2C address `0x3c`
@@ -65,5 +65,5 @@ mode, reflash that half with the matching firmware artifact.
 - ZMK is pinned to commit `ff09f2d0c9f13a868c8f71d71d9348ade438e4b6` in `config/west.yml`.
 - The GitHub Actions build workflow uses the same ZMK commit for its reusable workflow.
 - ZMK Studio is enabled on the USB central builds.
-- OLED I2C: SDA=P0.17, SCL=P0.20, driven via `&i2c0` with custom pinctrl (not `&pro_micro_i2c`, which targets P0.06/P0.08).
+- OLED I2C: SDA=P0.17 and SCL=P0.20 on the ProMicroNRF52840; the built-in Sofle I2C0 node is retained with an explicit pinctrl.
 - RGB underglow is linked to external power so it can turn on at boot on hardware where the LED rail is power-gated.

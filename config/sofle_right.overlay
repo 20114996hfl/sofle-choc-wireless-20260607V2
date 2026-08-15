@@ -7,12 +7,12 @@
  *   https://github.com/db-ok/SofleChocWireless
  *   https://github.com/db-ok/zmk-config-soflechocwireless
  *
- * Verified pin mapping (per hardware measurement, 2026-07-11):
+ * Pin mapping confirmed from hardware:
  *   RGB SPI : DIN = P0.06                 (NOT P0.08 as previously assumed)
- *   OLED I2C: SDA = P0.17, SCL = P0.20    (NOT the nice_nano pro_micro defaults)
+ *   OLED I2C: SDA = P0.17, SCL = P0.20
  *
- * The OLED I2C is driven via &i2c0 with custom pinctrl,
- * NOT via the board's &pro_micro_i2c label (which targets P0.06/P0.08).
+ * The built-in Sofle OLED node uses I2C0. Only its ProMicroNRF52840 pinctrl is
+ * retained here explicitly to match this PCB.
  */
 
 #include <dt-bindings/led/led.h>
@@ -31,18 +31,18 @@
         };
     };
 
-    /* Custom I2C0 pinctrl for the OLED on P0.17 (SDA) / P0.20 (SCL). */
-    i2c0_default: i2c0_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
-        };
-    };
+};
 
-    i2c0_sleep: i2c0_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
-            low-power-enable;
-        };
+&i2c0_default {
+    group1 {
+        psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
+    };
+};
+
+&i2c0_sleep {
+    group1 {
+        psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
+        low-power-enable;
     };
 };
 
@@ -72,31 +72,11 @@
 
 &i2c0 {
     status = "okay";
-    compatible = "nordic,nrf-twim";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
-    pinctrl-names = "default", "sleep";
     clock-frequency = <100000>;
-
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        width = <128>;
-        height = <32>;
-        segment-offset = <0>;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-remap;
-        com-invdir;
-        com-sequential;
-        prechargep = <0x22>;
-    };
 };
 
 / {
     chosen {
         zmk,underglow = &led_strip;
-        zephyr,display = &oled;
     };
 };
