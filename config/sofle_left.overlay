@@ -17,6 +17,25 @@
  */
 
 #include <dt-bindings/led/led.h>
+#include <dt-bindings/gpio/gpio.h>
+
+/*
+ * The SuperMini uses P0.13 as an active-high switch for its 3.3 V VCC output.
+ * Keep it high unconditionally: OLED and RGB share this rail, so restoring a
+ * persisted EXT_POWER=off setting must never remove their power.
+ */
+&{/EXT_POWER} {
+    status = "disabled";
+};
+
+&gpio0 {
+    vcc_enable_hog: vcc_enable_hog {
+        gpio-hog;
+        gpios = <13 GPIO_ACTIVE_HIGH>;
+        output-high;
+        line-name = "supermini-vcc-enable";
+    };
+};
 
 &pinctrl {
     spi3_default: spi3_default {
