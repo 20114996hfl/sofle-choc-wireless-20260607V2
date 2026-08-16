@@ -71,5 +71,6 @@ mode, reflash that half with the matching firmware artifact.
 - Studio locking is disabled for convenient local debugging; connect the standalone left half or dongle over USB.
 - Factory RGB state is solid red, 20% brightness, enabled at boot, with a 5% minimum brightness.
 - OLED I2C: SDA=P0.17 and SCL=P0.20 on the ProMicroNRF52840; the built-in Sofle I2C0 node is retained with an explicit pinctrl.
-- OLED status: battery level is shown as a numeric percentage, layers are shown as 1-5, and the output widget indicates USB or BLE (including the BLE profile and connection state).
+- Left OLED status: battery level is shown as a numeric percentage, layers are shown as 1-5, and the output widget indicates USB or BLE (including the BLE profile and connection state).
+- Right OLED status: a full-screen 128x32 landscape Bongo Cat idles and blinks, then alternates paws when local right-half keys are pressed. The implementation is inspired by `mctechnology17/zmk-nice-oled` while remaining a small local module.
 - P0.13 is forced high as a GPIO hog, keeping the SuperMini 3.3 V VCC output on for the shared OLED/RGB rail. The persistent ZMK external-power device and `EP_TOG` key are disabled.
