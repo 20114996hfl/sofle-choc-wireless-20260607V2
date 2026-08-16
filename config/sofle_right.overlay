@@ -8,8 +8,8 @@
  *   https://github.com/db-ok/zmk-config-soflechocwireless
  *
  * Pin mapping confirmed from hardware:
- *   RGB SPI : DIN = P0.08
- *   PCB LED : P0.06 (not the WS2812 data signal)
+ *   RGB SPI : schematic LED net / DIN = P0.08
+ *   PCB CS  : P0.06 (not the WS2812 data signal)
  *   OLED I2C: SDA = P0.17, SCL = P0.20
  *
  * The built-in Sofle OLED node uses I2C0. Only its ProMicroNRF52840 pinctrl is

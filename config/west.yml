@@ -1,6 +1,7 @@
 manifest:
   defaults:
-    revision: v0.3
+    # Pinned ZMK main snapshot with Studio and Sofle physical-layout support.
+    revision: 6e2ef41e022d555b10f116e395832913f71717b3
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
