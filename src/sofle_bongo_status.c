@@ -35,13 +35,16 @@ static uint32_t last_tap_at;
 static uint8_t idle_ticks;
 static bool next_paw_right;
 
-static lv_img_dsc_t image = {
-    .header.always_zero = 0,
-    .header.reserved = 0,
-    .header.w = OLED_WIDTH,
-    .header.h = OLED_HEIGHT,
+static lv_image_dsc_t image = {
+    .header =
+        {
+            .magic = LV_IMAGE_HEADER_MAGIC,
+            .cf = LV_COLOR_FORMAT_I1,
+            .w = OLED_WIDTH,
+            .h = OLED_HEIGHT,
+            .stride = OLED_STRIDE,
+        },
     .data_size = sizeof(image_buffer),
-    .header.cf = LV_IMG_CF_INDEXED_1BIT,
     .data = image_buffer,
 };
 
@@ -247,8 +250,8 @@ lv_obj_t *zmk_display_status_screen(void) {
     lv_obj_set_style_border_width(screen, 0, LV_PART_MAIN);
 
     draw_frame(BONGO_IDLE);
-    image_obj = lv_img_create(screen);
-    lv_img_set_src(image_obj, &image);
+    image_obj = lv_image_create(screen);
+    lv_image_set_src(image_obj, &image);
     lv_obj_align(image_obj, LV_ALIGN_CENTER, 0, 0);
 
     sofle_bongo_input_init();

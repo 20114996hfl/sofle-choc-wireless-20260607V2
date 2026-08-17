@@ -3,7 +3,7 @@ menu "Sofle custom features"
 config SOFLE_BONGO_DISPLAY
     bool "Landscape Bongo Cat OLED status screen"
     depends on ZMK_DISPLAY
-    select LV_USE_IMG
+    select LV_USE_IMAGE
     help
       Replaces the normal status screen with a 128x32 landscape Bongo Cat.
 
