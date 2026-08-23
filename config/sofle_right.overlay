@@ -106,6 +106,8 @@
         segment-remap;
         com-invdir;
         com-sequential;
+        /* Match the upstream Sofle SSD1306 node: black background, white pixels. */
+        inversion-on;
         prechargep = <0x22>;
     };
 };
